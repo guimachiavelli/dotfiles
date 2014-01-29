@@ -1,0 +1,15 @@
+    " HTML 
+        if count(g:spf13_bundle_groups, 'html')
+            Bundle 'othree/html5.vim'
+        endif
+    " 
+
+    " Javascript 
+        if count(g:spf13_bundle_groups, 'javascript')
+            Bundle 'digitaltoad/vim-jade'
+            Bundle 'othree/javascript-libraries-syntax.vim'
+            Bundle 'jQuery'
+			Bundle 'guileen/vim-node-dict'
+			Bundle 'moll/vim-node'
+        endif
+ 
