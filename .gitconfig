@@ -1,10 +1,10 @@
 [user]
-		name = gui machiavelli
-			email = hey@guimachiavelli.com
+	name = gui machiavelli
+	email = hey@guimachiavelli.com
 [credential]
-		helper = osxkeychain
+	helper = osxkeychain
 [core]
-		editor = mvim -v
+	editor = mvim -v
 	excludesfile = /Users/gui/.gitignore_global
 [push]
-		default = simple
+	default = simple
