@@ -1,7 +1,56 @@
 " guimachiavelli vim setup
 
-set nocompatible
-set shell=/bin/sh
+set nocompatible              " be iMproved, required
+
+" Plugin setup {
+	filetype off                  " required
+
+	" set the runtime path to include Vundle and initialize
+	set rtp+=~/.vim/bundle/Vundle.vim
+	call vundle#begin()
+
+	Plugin 'gmarik/vundle'
+	Plugin 'MarcWeber/vim-addon-mw-utils'
+	Plugin 'tomtom/tlib_vim'
+	Plugin 'mileszs/ack.vim'
+
+	Plugin 'scrooloose/nerdtree'
+	Plugin 'altercation/vim-colors-solarized'
+	Plugin 'spf13/vim-colors'
+	Plugin 'tpope/vim-surround'
+	Plugin 'tpope/vim-repeat'
+	Plugin 'spf13/vim-autoclose'
+	Plugin 'kien/ctrlp.vim'
+	Plugin 'tacahiroy/ctrlp-funky'
+	Plugin 'terryma/vim-multiple-cursors'
+	Plugin 'bling/vim-airline'
+	Plugin 'Lokaltog/vim-easymotion'
+	Plugin 'jistr/vim-nerdtree-tabs'
+	Plugin 'flazz/vim-colorschemes'
+	Plugin 'mbbill/undotree'
+	Plugin 'nathanaelkane/vim-indent-guides'
+	Plugin 'mhinz/vim-signify'
+	Plugin 'gcmt/wildfire.vim'
+
+
+	Plugin 'scrooloose/syntastic'
+	Plugin 'tpope/vim-fugitive'
+	Plugin 'scrooloose/nerdcommenter'
+	Plugin 'godlygeek/tabular'
+
+	Plugin 'elzr/vim-json'
+	Plugin 'pangloss/vim-javascript'
+	Plugin 'briancollins/vim-jst'
+	Plugin 'kchmck/vim-coffee-script'
+	Plugin 'amirh/HTML-AutoCloseTag'
+	Plugin 'hail2u/vim-css3-syntax'
+	Plugin 'gorodinskiy/vim-coloresque'
+	Plugin 'tpope/vim-haml'
+
+	Plugin 'tpope/vim-rails'
+
+	call vundle#end()
+"}
 
 
 " General {
@@ -17,11 +66,11 @@ set shell=/bin/sh
 	set clipboard=unnamed
 
 	set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
-	set viewoptions=folds,options,cursor,unix,slash 
+	set viewoptions=folds,options,cursor,unix,slash
 	set virtualedit=onemore             " Allow for cursor beyond last character
 	set history=500                     " Store a ton of history (default is 20)
 	set spell                           " Spell checking on
-	set spell spelllang=en_gb       " Default spelling language
+	set spell spelllang=en_gb       	" Default spelling language
 	set hidden                          " Allow buffer switching without saving
 
 " }
@@ -283,44 +332,4 @@ set shell=/bin/sh
 " }
 
 
-" Bundles {
 
-	Bundle 'gmarik/vundle'
-	Bundle 'MarcWeber/vim-addon-mw-utils'
-	Bundle 'tomtom/tlib_vim'
-	Bundle 'mileszs/ack.vim'
-
-	Bundle 'scrooloose/nerdtree'
-	Bundle 'altercation/vim-colors-solarized'
-	Bundle 'spf13/vim-colors'
-	Bundle 'tpope/vim-surround'
-	Bundle 'tpope/vim-repeat'
-	Bundle 'spf13/vim-autoclose'
-	Bundle 'kien/ctrlp.vim'
-	Bundle 'tacahiroy/ctrlp-funky'
-	Bundle 'terryma/vim-multiple-cursors'
-	Bundle 'bling/vim-airline'
-	Bundle 'Lokaltog/vim-easymotion'
-	Bundle 'jistr/vim-nerdtree-tabs'
-	Bundle 'flazz/vim-colorschemes'
-	Bundle 'mbbill/undotree'
-	Bundle 'nathanaelkane/vim-indent-guides'
-	Bundle 'mhinz/vim-signify'
-	Bundle 'gcmt/wildfire.vim'
-
-
-	Bundle 'scrooloose/syntastic'
-	Bundle 'tpope/vim-fugitive'
-	Bundle 'scrooloose/nerdcommenter'
-	Bundle 'godlygeek/tabular'
-
-	Bundle 'elzr/vim-json'
-	Bundle 'pangloss/vim-javascript'
-	Bundle 'briancollins/vim-jst'
-	Bundle 'kchmck/vim-coffee-script'
-	Bundle 'amirh/HTML-AutoCloseTag'
-	Bundle 'hail2u/vim-css3-syntax'
-	Bundle 'gorodinskiy/vim-coloresque'
-	Bundle 'tpope/vim-haml'
-
-	Bundle 'tpope/vim-rails'
