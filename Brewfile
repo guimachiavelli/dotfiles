@@ -21,11 +21,18 @@ install ack
 install git
 install imagemagick --with-webp
 install lynx
-install nmap
-install node # This installs `npm` too using the recommended installation method
-install webkit2png
+install node
+install ffmpeg
+install editorconfig
+install youtube-dl
 
-install homebrew/versions/lua52
+# tap  Homebrew games
+tap Homebrew/homebrew-games
+
+# games =)
+install dwarf-fortress
+install stone-soup
+install robotfindskitten
 
 # Remove outdated versions from the cellar
 cleanup
