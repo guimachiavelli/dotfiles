@@ -19,13 +19,13 @@
 *.rar
 *.tar
 *.zip
-#
+
 # # Logs and databases #
 # ######################
 *.log
 *.sql
 *.sqlite
-#
+
 # # OS generated files #
 # ######################
 .DS_Store
@@ -39,18 +39,15 @@ Thumbs.db
 *.swp
 *.swo
 .sass-cache/
-#
+
 # # Bower packages #
 # ######################
 bower_components/
-#
 
-#
 # # Node modules #
 # ######################
 node_modules
 npm-debug.log
-
 
 # # Other #
 # ######################
@@ -60,4 +57,3 @@ wordpress/wp-content/uploads/
 wp-config.php
 .htaccess
 old/
-
