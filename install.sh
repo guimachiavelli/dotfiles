@@ -8,6 +8,9 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # install packages
 sh brew.sh
 
+# install npm packages
+sh npm.sh
+
 # install applications
 sh cask.sh
 
