@@ -1,6 +1,9 @@
 # @gf3’s Sexy Bash Prompt, inspired by “Extravagant Zsh Prompt”
 # Shamelessly copied from https://github.com/gf3/dotfiles
 
+# vi mode
+set -o vi
+
 default_username='gui'
 
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
@@ -12,18 +15,18 @@ fi
 if tput setaf 1 &> /dev/null; then
 	tput sgr0
 	if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-		MAGENTA=$(tput setaf 9)
-		ORANGE=$(tput setaf 172)
-		GREEN=$(tput setaf 118)
-		RED=$(tput setaf 160)
-		PURPLE=$(tput setaf 128)
-		WHITE=$(tput setaf 256)
-	else
-		MAGENTA=$(tput setaf 5)
-		ORANGE=$(tput setaf 4)
-		GREEN=$(tput setaf 2)
-		PURPLE=$(tput setaf 1)
-		WHITE=$(tput setaf 7)
+        MAGENTA=$(tput setaf 9)
+        ORANGE=$(tput setaf 172)
+        GREEN=$(tput setaf 118)
+        RED=$(tput setaf 160)
+        PURPLE=$(tput setaf 128)
+        WHITE=$(tput setaf 256)
+    else
+        MAGENTA=$(tput setaf 5)
+        ORANGE=$(tput setaf 4)
+        GREEN=$(tput setaf 2)
+        PURPLE=$(tput setaf 1)
+        WHITE=$(tput setaf 7)
 	fi
 	BOLD=$(tput bold)
 	RESET=$(tput sgr0)
