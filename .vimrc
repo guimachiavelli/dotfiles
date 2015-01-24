@@ -25,7 +25,6 @@ set nocompatible              " be iMproved, required
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'bling/vim-airline'
     Plugin 'Lokaltog/vim-easymotion'
-    Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'flazz/vim-colorschemes'
     Plugin 'mbbill/undotree'
     Plugin 'nathanaelkane/vim-indent-guides'
@@ -73,7 +72,7 @@ set nocompatible              " be iMproved, required
 
     set noswapfile
 
-    set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+    set shortmess=IfilmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,options,cursor,unix,slash
     set virtualedit=onemore             " Allow for cursor beyond last character
     set history=500                     " Store a ton of history (default is 20)
@@ -188,17 +187,6 @@ set nocompatible              " be iMproved, required
     noremap j gj
     noremap k gk
 
-
-    " The following two lines conflict with moving to top and
-    " bottom of the screen
-    " If you prefer that functionality, add the following to your
-    " .vimrc.before.local file:
-    "   let g:spf13_no_fastTabs = 1
-    if !exists('g:spf13_no_fastTabs')
-        map <S-H> gT
-        map <S-L> gt
-    endif
-
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
 
@@ -224,7 +212,7 @@ set nocompatible              " be iMproved, required
     " }
 
     " NerdTree {
-            map <C-e> <plug>NERDTreeTabsToggle<CR>
+            map <C-e> :NERDTreeToggle<CR>
             map <leader>e :NERDTreeFind<CR>
             nmap <leader>nt :NERDTreeFind<CR>
 
@@ -235,8 +223,9 @@ set nocompatible              " be iMproved, required
             let NERDTreeMouseMode=2
             let NERDTreeShowHidden=0
             let NERDTreeKeepTreeInNewTab=1
-            let g:nerdtree_tabs_open_on_gui_startup=1
 
+            " close vim if there are no other open buffers
+            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
     " }
 
     " Tabularize {
@@ -272,7 +261,7 @@ set nocompatible              " be iMproved, required
             \ },
         \ }
 
-        " CtrlP extensions
+    " CtrlP extensions
         let g:ctrlp_extensions = ['funky']
         nnoremap <Leader>fu :CtrlPFunky<Cr>
     "}
@@ -325,11 +314,8 @@ set nocompatible              " be iMproved, required
     " }
     
     " syntastic {
-        "let g:syntastic_error_symbol = "✕"
-        "let g:syntastic_warning_symbol = "⚠"
         let g:syntastic_javascript_checkers = ['jshint']
         let g:syntastic_quiet_messages = { }
-        "let g:syntastic_debug=3
         let g:syntastic_javascript_jshint_args = '--config ' .  $HOME . '/.jshintrc'
     " }
 
