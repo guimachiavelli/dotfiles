@@ -4,7 +4,7 @@
 [credential]
 	helper = osxkeychain
 [core]
-	editor = mvim -v
+	editor = vi
 	excludesfile = /Users/gui/.gitignore_global
 [push]
 	default = simple
