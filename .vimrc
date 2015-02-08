@@ -10,47 +10,39 @@ set nocompatible              " be iMproved, required
     call vundle#begin()
 
     Plugin 'gmarik/vundle'
-    Plugin 'MarcWeber/vim-addon-mw-utils'
-    Plugin 'tomtom/tlib_vim'
     Plugin 'mileszs/ack.vim'
-
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'spf13/vim-colors'
-    Plugin 'tpope/vim-surround'
-    Plugin 'tpope/vim-repeat'
-    Plugin 'spf13/vim-autoclose'
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'tacahiroy/ctrlp-funky'
-    Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'bling/vim-airline'
-    Plugin 'Lokaltog/vim-easymotion'
-    Plugin 'flazz/vim-colorschemes'
-    Plugin 'mbbill/undotree'
-    Plugin 'nathanaelkane/vim-indent-guides'
-    Plugin 'mhinz/vim-signify'
-    Plugin 'gcmt/wildfire.vim'
-
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
-    Plugin 'scrooloose/nerdcommenter'
+
+    Plugin 'altercation/vim-colors-solarized'
+
+    Plugin 'terryma/vim-multiple-cursors'
+    Plugin 'Lokaltog/vim-easymotion'
+    Plugin 'gcmt/wildfire.vim'
+
+    Plugin 'bling/vim-airline'
+    Plugin 'mhinz/vim-signify'
+    Plugin 'nathanaelkane/vim-indent-guides'
+    Plugin 'gorodinskiy/vim-coloresque'
+
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'tacahiroy/ctrlp-funky'
+
+    Plugin 'tpope/vim-surround'
     Plugin 'godlygeek/tabular'
+    Plugin 'scrooloose/nerdcommenter'
 
     Plugin 'elzr/vim-json'
     Plugin 'pangloss/vim-javascript'
-    Plugin 'jelera/vim-javascript-syntax'
-    Plugin 'briancollins/vim-jst'
-    Plugin 'moll/vim-node'
     Plugin 'kchmck/vim-coffee-script'
+
     Plugin 'amirh/HTML-AutoCloseTag'
     Plugin 'hail2u/vim-css3-syntax'
-    Plugin 'gorodinskiy/vim-coloresque'
     Plugin 'tpope/vim-haml'
-    Plugin 'othree/javascript-libraries-syntax.vim'
 
-    Plugin 'tpope/vim-rails'
     Plugin 'vim-ruby/vim-ruby'
-    
+
     Plugin 'jpalardy/vim-slime'
     Plugin 'amdt/vim-niji'
 
@@ -59,7 +51,6 @@ set nocompatible              " be iMproved, required
 
 
 " General {
-
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
     set background=dark         " Assume a dark background
@@ -71,7 +62,6 @@ set nocompatible              " be iMproved, required
     set clipboard=unnamed
 
     set noswapfile
-
     set shortmess=IfilmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,options,cursor,unix,slash
     set virtualedit=onemore             " Allow for cursor beyond last character
@@ -79,7 +69,6 @@ set nocompatible              " be iMproved, required
     set spell                           " Spell checking on
     set spell spelllang=en_gb       	" Default spelling language
     set hidden                          " Allow buffer switching without saving
-
 " }
 
 " Vim UI {
@@ -87,11 +76,9 @@ set nocompatible              " be iMproved, required
     if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
         let g:solarized_termcolors=256
         let g:solarized_termtrans=1
-        let g:solarized_contrast="high"
-        let g:solarized_visibility="low"
     endif
 
-    color solarized                 " Load a colorscheme
+    colorscheme solarized           " Load a colorscheme
     highlight clear SignColumn      " SignColumn should match background
     highlight clear LineNr
     set tabpagemax=10               " Only show 10 tabs
@@ -129,12 +116,9 @@ set nocompatible              " be iMproved, required
     set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
     set scrolljump=5                " Lines to scroll when cursor leaves screen
     set scrolloff=3                 " Minimum lines to keep above and below cursor
-    set foldenable                  " Auto fold code
-
 " }
 
 " Formatting {
-
     set wrap 						" wrap lines
     set linebreak 					" wrap lines at words, not chars
     set autoindent                  " Indent at the same level of the previous line
@@ -151,23 +135,6 @@ set nocompatible              " be iMproved, required
     set splitright                  " Puts new vsplit windows to the right of the current
     set splitbelow                  " Puts new split windows to the bottom of the current
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-
-" }
-
-
-" GUI Settings {
-
-    " GVIM- (here instead of .gvimrc)
-    if has('gui_running')
-        set guioptions-=T           " Remove the toolbar
-        set lines=40                " 40 lines of text instead of 24
-    else
-        if &term == 'xterm' || &term == 'screen'
-            set t_Co=256
-        endif
-"        set term=builtin_ansi       " Make arrow and other keys work
-    endif
-
 " }
 
 
@@ -200,10 +167,10 @@ set nocompatible              " be iMproved, required
 " }
 
 " Plugins {
+    au BufRead,BufNewFile *.scss set filetype=sass
+" }
 
-    " Misc {
-        let g:NERDShutUp=1
-    " }
+" Plugins {
 
     " AutoCloseTag {
         " Make it so AutoCloseTag works for xml and xhtml files as well
@@ -216,6 +183,7 @@ set nocompatible              " be iMproved, required
             map <leader>e :NERDTreeFind<CR>
             nmap <leader>nt :NERDTreeFind<CR>
 
+            let g:NERDShutUp=1
             let NERDTreeShowBookmarks=0
             let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
             let NERDTreeChDirMode=0
@@ -225,8 +193,7 @@ set nocompatible              " be iMproved, required
             let NERDTreeKeepTreeInNewTab=1
 
             " close vim if there are no other open buffers
-            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-    " }
+             autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
     " Tabularize {
             nmap <Leader>a& :Tabularize /&<CR>
@@ -283,14 +250,6 @@ set nocompatible              " be iMproved, required
         endif
     "}
 
-    " UndoTree {
-        if isdirectory(expand("~/.vim/bundle/undotree/"))
-            nnoremap <Leader>u :UndotreeToggle<CR>
-            " If undotree is opened, it is likely one wants to interact with it.
-            let g:undotree_SetFocusWhenToggle=1
-        endif
-    " }
-
     " indent_guides {
         if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
             let g:indent_guides_start_level = 2
@@ -300,7 +259,7 @@ set nocompatible              " be iMproved, required
     " }
 
     " Wildfire {
-    let g:wildfire_objects = {
+        let g:wildfire_objects = {
             \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
             \ "html,xml" : ["at"],
             \ }
@@ -312,7 +271,7 @@ set nocompatible              " be iMproved, required
             let g:airline#extensions#tabline#enabled = 1
         endif
     " }
-    
+
     " syntastic {
         let g:syntastic_javascript_checkers = ['jshint']
         let g:syntastic_quiet_messages = { }
@@ -321,7 +280,6 @@ set nocompatible              " be iMproved, required
 
     let g:slime_target = "tmux"
     let g:slime_default_config = {"socket_name": "default", "target_pane": "0"}
-
 
 
 " Functions {
@@ -344,6 +302,3 @@ set nocompatible              " be iMproved, required
 " }
 
 " }
-
-
-
