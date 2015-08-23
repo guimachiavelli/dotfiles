@@ -15,17 +15,18 @@ set nocompatible              " be iMproved, required
     Plugin 'tpope/vim-fugitive'
 
     Plugin 'altercation/vim-colors-solarized'
+    Plugin 'tomasr/molokai'
+    Plugin 'sickill/vim-monokai'
+    Plugin 'tpope/vim-vividchalk'
 
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'Lokaltog/vim-easymotion'
-    Plugin 'gcmt/wildfire.vim'
 
     Plugin 'bling/vim-airline'
     Plugin 'mhinz/vim-signify'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'gorodinskiy/vim-coloresque'
 
-    Plugin 'scrooloose/nerdtree'
     Plugin 'kien/ctrlp.vim'
     Plugin 'tacahiroy/ctrlp-funky'
 
@@ -35,16 +36,16 @@ set nocompatible              " be iMproved, required
 
     Plugin 'elzr/vim-json'
     Plugin 'pangloss/vim-javascript'
-    Plugin 'kchmck/vim-coffee-script'
+    Plugin 'othree/javascript-libraries-syntax.vim'
 
-    Plugin 'amirh/HTML-AutoCloseTag'
-    Plugin 'hail2u/vim-css3-syntax'
     Plugin 'tpope/vim-haml'
 
     Plugin 'vim-ruby/vim-ruby'
 
     Plugin 'jpalardy/vim-slime'
     Plugin 'amdt/vim-niji'
+
+    Plugin 'octol/vim-cpp-enhanced-highlight'
 
     call vundle#end()
 "}
@@ -77,8 +78,10 @@ set nocompatible              " be iMproved, required
         let g:solarized_termcolors=256
         let g:solarized_termtrans=1
     endif
-
-    colorscheme solarized           " Load a colorscheme
+"let g:molokai_original = 1
+let g:rehash256 = 1
+    "colorscheme solarized           " Load a colorscheme
+    colorscheme molokai
     highlight clear SignColumn      " SignColumn should match background
     highlight clear LineNr
     set tabpagemax=10               " Only show 10 tabs
@@ -141,6 +144,7 @@ set nocompatible              " be iMproved, required
 " Key (re)Mappings {
 
     let mapleader = ','
+    nnoremap ; :
 
     nmap <leader>l :bnext<CR>
     nmap <leader>h :bprevious<CR>
@@ -164,6 +168,10 @@ set nocompatible              " be iMproved, required
     " Allow using the repeat operator with a visual selection (!)
     vnoremap . :normal .<CR>
 
+
+    :command W w
+    :command Q q
+    :command Wq wq
 " }
 
 " Plugins {
@@ -178,22 +186,11 @@ set nocompatible              " be iMproved, required
         nmap <Leader>ac <Plug>ToggleAutoCloseMappings
     " }
 
-    " NerdTree {
-            map <C-e> :NERDTreeToggle<CR>
-            map <leader>e :NERDTreeFind<CR>
-            nmap <leader>nt :NERDTreeFind<CR>
-
-            let g:NERDShutUp=1
-            let NERDTreeShowBookmarks=0
-            let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-            let NERDTreeChDirMode=0
-            let NERDTreeQuitOnOpen=0
-            let NERDTreeMouseMode=2
-            let NERDTreeShowHidden=0
-            let NERDTreeKeepTreeInNewTab=1
-
-            " close vim if there are no other open buffers
-             autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    " netrw {
+        noremap <C-e> :Explore<CR>
+        let g:netrw_liststyle=3
+        let g:netrw_list_hide='.git,.sass-cache,.grunt,.gulp,node_modules,.DS_Store'
+    " }
 
     " Tabularize {
             nmap <Leader>a& :Tabularize /&<CR>
@@ -215,8 +212,6 @@ set nocompatible              " be iMproved, required
 
     " ctrlp {
         let g:ctrlp_working_path_mode = 'ra'
-        nnoremap <silent> <D-t> :CtrlP<CR>
-        nnoremap <silent> <D-r> :CtrlPMRU<CR>
         let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
@@ -258,13 +253,6 @@ set nocompatible              " be iMproved, required
         endif
     " }
 
-    " Wildfire {
-        let g:wildfire_objects = {
-            \ "*" : ["i'", 'i"', "i)", "i]", "i}", "ip"],
-            \ "html,xml" : ["at"],
-            \ }
-    " }
-
     " vim-airline {
         if isdirectory(expand("~/.vim/bundle/vim-airline/"))
             let g:airline_theme = 'solarized'
@@ -276,6 +264,11 @@ set nocompatible              " be iMproved, required
         let g:syntastic_javascript_checkers = ['jshint']
         let g:syntastic_quiet_messages = { }
         let g:syntastic_javascript_jshint_args = '--config ' .  $HOME . '/.jshintrc'
+
+        au BufRead,BufNewFile *.scss set filetype=scss
+        autocmd FileType scss setlocal expandtab shiftwidth=4 softtabstop=4
+        let g:syntastic_scss_checkers = ['scss_lint']
+        let g:syntastic_scss_scss_lint_args = '--config ' .  $HOME . '/.scss-lint.yml'
     " }
 
     let g:slime_target = "tmux"
