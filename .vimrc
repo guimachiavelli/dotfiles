@@ -46,6 +46,7 @@ set nocompatible              " be iMproved, required
     Plugin 'amdt/vim-niji'
 
     Plugin 'octol/vim-cpp-enhanced-highlight'
+    Plugin 'rizzatti/dash.vim'
 
     call vundle#end()
 "}
@@ -171,6 +172,7 @@ let g:rehash256 = 1
 
     :command W w
     :command Q q
+    :command Qa qa
     :command Wq wq
 " }
 
@@ -295,3 +297,4 @@ let g:rehash256 = 1
 " }
 
 " }
+
