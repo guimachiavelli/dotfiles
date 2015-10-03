@@ -15,7 +15,6 @@ brew install bash-completion
 
 # Install more recent versions of some OS X tools
 brew install vim --override-system-vi
-brew install homebrew/php/php56 --with-gmp
 
 # Install other useful binaries
 brew install ack
@@ -26,6 +25,7 @@ brew install node
 brew install ffmpeg
 brew install editorconfig
 brew install youtube-dl
+brew install tmux
 
 # tap  Homebrew games
 brew tap Homebrew/homebrew-games
