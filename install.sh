@@ -18,13 +18,10 @@ sh cask.sh
 sh .osx
 
 # copy all dotfiles
-rsync -av --progress ~/projects/dotfiles/ ./ --exclude install.sh --exclude .git --exclude .osx --exclude brew.sh --exclude cask.sh
-
-# z
-cd ~/code
-git clone https://github.com/rupa/z.git
-chmod +x ~/code/z/z.sh
+rsync -av --progress ./ ~/ --exclude install.sh --exclude .git --exclude .osx --exclude brew.sh --exclude cask.sh --exclude npm.sh
 
 # vundle
 mkdir ~/.vim
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# install bundles
+vim +PluginInstall +qall
