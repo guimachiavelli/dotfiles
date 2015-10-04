@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Install command-line tools using Homebrew
+# tap dupes for make
+brew tap homebrew/dupes
 
 # Make sure we’re using the latest Homebrew
 brew update
@@ -14,7 +15,10 @@ brew install bash
 brew install bash-completion
 
 # Install more recent versions of some OS X tools
+brew install coreutils
 brew install vim --override-system-vi
+brew install make --with-default-names
+brew install findutils --with-default-names
 
 # Install other useful binaries
 brew install ack
