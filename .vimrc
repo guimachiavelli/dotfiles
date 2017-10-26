@@ -4,7 +4,7 @@ set nocompatible              " be iMproved, required
 
 " Plugin setup {
     filetype off                  " required
-
+ 
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
@@ -13,6 +13,8 @@ set nocompatible              " be iMproved, required
     Plugin 'mileszs/ack.vim'
     Plugin 'scrooloose/syntastic'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'tpope/vim-vinegar'
 
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'tomasr/molokai'
@@ -25,28 +27,27 @@ set nocompatible              " be iMproved, required
     Plugin 'bling/vim-airline'
     Plugin 'mhinz/vim-signify'
     Plugin 'nathanaelkane/vim-indent-guides'
-    Plugin 'gorodinskiy/vim-coloresque'
 
-    Plugin 'kien/ctrlp.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'tacahiroy/ctrlp-funky'
 
     Plugin 'tpope/vim-surround'
-    Plugin 'godlygeek/tabular'
     Plugin 'scrooloose/nerdcommenter'
+
+    Plugin 'othree/html5.vim'
 
     Plugin 'elzr/vim-json'
     Plugin 'pangloss/vim-javascript'
     Plugin 'othree/javascript-libraries-syntax.vim'
+    Plugin 'mxw/vim-jsx'
 
     Plugin 'tpope/vim-haml'
-
     Plugin 'vim-ruby/vim-ruby'
 
-    Plugin 'jpalardy/vim-slime'
-    Plugin 'amdt/vim-niji'
-
     Plugin 'octol/vim-cpp-enhanced-highlight'
-    Plugin 'rizzatti/dash.vim'
+    Plugin 'tikhomirov/vim-glsl'
+
+    Plugin 'sophacles/vim-processing'
 
     call vundle#end()
 "}
@@ -55,7 +56,6 @@ set nocompatible              " be iMproved, required
 " General {
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
-    set background=dark         " Assume a dark background
     set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
@@ -71,6 +71,7 @@ set nocompatible              " be iMproved, required
     set spell                           " Spell checking on
     set spell spelllang=en_gb       	" Default spelling language
     set hidden                          " Allow buffer switching without saving
+    set t_Co=256
 " }
 
 " Vim UI {
@@ -79,16 +80,14 @@ set nocompatible              " be iMproved, required
         let g:solarized_termcolors=256
         let g:solarized_termtrans=1
     endif
-"let g:molokai_original = 1
-let g:rehash256 = 1
-    "colorscheme solarized           " Load a colorscheme
     colorscheme molokai
     highlight clear SignColumn      " SignColumn should match background
     highlight clear LineNr
+    set background=dark
     set tabpagemax=10               " Only show 10 tabs
     set showmode                    " Display the current mode
     set cursorline                  " Highlight current line
-    let &colorcolumn="80,".join(range(120,999),",")
+    set colorcolumn=80
 
     if has('cmdline_info')
         set ruler                   " Show the ruler
@@ -105,6 +104,10 @@ let g:rehash256 = 1
         set statusline+=\ [%{&ff}/%Y]            " Filetype
         set statusline+=\ [%{getcwd()}]          " Current dir
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
     endif
 
     set backspace=indent,eol,start  " Backspace for dummies
@@ -126,9 +129,9 @@ let g:rehash256 = 1
     set wrap 						" wrap lines
     set linebreak 					" wrap lines at words, not chars
     set autoindent                  " Indent at the same level of the previous line
-    set shiftwidth=4                " Use indents of 4 spaces
-    set tabstop=4                   " An indentation every four columns
-    set softtabstop=4               " Let backspace delete indent
+    set shiftwidth=2                " Use indents of 4 spaces
+    set tabstop=2                   " An indentation every four columns
+    set softtabstop=2               " Let backspace delete indent
     set expandtab
     set smarttab
     set visualbell
@@ -169,53 +172,29 @@ let g:rehash256 = 1
     " Allow using the repeat operator with a visual selection (!)
     vnoremap . :normal .<CR>
 
-
-    :command W w
-    :command Q q
-    :command Qa qa
-    :command Wq wq
+    :command! W w
+    :command! Q q
+    :command! Qa qa
+    :command! Wq wq
 " }
 
 " Plugins {
+
     au BufRead,BufNewFile *.scss set filetype=sass
-" }
-
-" Plugins {
-
-    " AutoCloseTag {
-        " Make it so AutoCloseTag works for xml and xhtml files as well
-        au FileType xml ru ftplugin/html/autoclosetag.vim
-        nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-    " }
 
     " netrw {
-        noremap <C-e> :Explore<CR>
-        let g:netrw_liststyle=3
-        let g:netrw_list_hide='.git,.sass-cache,.grunt,.gulp,node_modules,.DS_Store'
+        set wildignore+=bkp/*
+        set wildignore+=.git/*
+        set wildignore+=.vagrant/*
+        set wildignore+=.sass-cache/*
+        set wildignore+=*.DS_Store
+        set wildignore+=node_modules/*
     " }
-
-    " Tabularize {
-            nmap <Leader>a& :Tabularize /&<CR>
-            vmap <Leader>a& :Tabularize /&<CR>
-            nmap <Leader>a= :Tabularize /=<CR>
-            vmap <Leader>a= :Tabularize /=<CR>
-            nmap <Leader>a: :Tabularize /:<CR>
-            vmap <Leader>a: :Tabularize /:<CR>
-            nmap <Leader>a:: :Tabularize /:\zs<CR>
-            vmap <Leader>a:: :Tabularize /:\zs<CR>
-            nmap <Leader>a, :Tabularize /,<CR>
-            vmap <Leader>a, :Tabularize /,<CR>
-            nmap <Leader>a,, :Tabularize /,\zs<CR>
-            vmap <Leader>a,, :Tabularize /,\zs<CR>
-            nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-            vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    " }
-
 
     " ctrlp {
         let g:ctrlp_working_path_mode = 'ra'
         let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+            \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules)$',
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
         let g:ctrlp_user_command = {
@@ -251,21 +230,25 @@ let g:rehash256 = 1
         if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
             let g:indent_guides_start_level = 2
             let g:indent_guides_guide_size = 1
-            let g:indent_guides_enable_on_vim_startup = 1
+            let g:indent_guides_enable_on_vim_startup = 0
         endif
     " }
 
     " vim-airline {
         if isdirectory(expand("~/.vim/bundle/vim-airline/"))
-            let g:airline_theme = 'solarized'
+            "let g:airline_theme = 'solarized'
             let g:airline#extensions#tabline#enabled = 1
         endif
     " }
 
     " syntastic {
-        let g:syntastic_javascript_checkers = ['jshint']
+        let g:syntastic_processing_checkers = ['javac']
         let g:syntastic_quiet_messages = { }
-        let g:syntastic_javascript_jshint_args = '--config ' .  $HOME . '/.jshintrc'
+        let g:syntastic_always_populate_loc_list = 0
+        let g:syntastic_auto_loc_list = 0
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_javascript_checkers = ['eslint']
+        let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
         au BufRead,BufNewFile *.scss set filetype=scss
         autocmd FileType scss setlocal expandtab shiftwidth=4 softtabstop=4
@@ -273,8 +256,20 @@ let g:rehash256 = 1
         let g:syntastic_scss_scss_lint_args = '--config ' .  $HOME . '/.scss-lint.yml'
     " }
 
-    let g:slime_target = "tmux"
-    let g:slime_default_config = {"socket_name": "default", "target_pane": "0"}
+    " Processing {
+        autocmd Filetype processing setlocal ts=4 sts=4 sw=4
+    " }
+
+    " YouCompleteMe {
+        let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+    " }
+
+    " JSX {
+        let g:jsx_ext_required = 0
+    " }
+
+" }
+
 
 
 " Functions {
@@ -292,9 +287,8 @@ let g:rehash256 = 1
         call cursor(l, c)
     endfunction
     " }
-    autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
+    autocmd FileType c,cpp,java,php,ruby,python,javascript,processing autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
 
 " }
 
-" }
 

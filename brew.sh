@@ -24,7 +24,6 @@ brew install findutils --with-default-names
 brew install ack
 brew install git
 brew install imagemagick --with-webp
-brew install lynx
 brew install node
 brew install ffmpeg
 brew install editorconfig
@@ -35,9 +34,9 @@ brew install tmux
 brew tap Homebrew/homebrew-games
 
 # games =)
-brew install dwarf-fortress
-brew install stone-soup
-brew install robotfindskitten
+# brew install dwarf-fortress
+# brew install stone-soup
+# brew install robotfindskitten
 
 # Remove outdated versions from the cellar
 brew cleanup
