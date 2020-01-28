@@ -26,9 +26,11 @@ brew install git
 brew install imagemagick --with-webp
 brew install node
 brew install ffmpeg
-brew install editorconfig
 brew install youtube-dl
 brew install tmux
+brew install aspell
+brew install ansible
+brew install composer
 
 # tap  Homebrew games
 brew tap Homebrew/homebrew-games

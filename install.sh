@@ -11,9 +11,6 @@ sh brew.sh
 # set latest bash as default
 sh bash.sh
 
-# install npm packages
-sh npm.sh
-
 # install applications
 sh cask.sh
 
@@ -26,5 +23,6 @@ rsync -av --progress ./ ~/ --exclude install.sh --exclude .git --exclude .osx --
 # vundle
 mkdir ~/.vim
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 # install bundles
 vim +PluginInstall +qall

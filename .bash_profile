@@ -17,8 +17,8 @@ shopt -s histappend
 shopt -s cdspell
 
 # Prefer US English and use UTF-8
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US"
+export LC_ALL="en_GB.UTF-8"
+export LANG="en_GB"
 
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
