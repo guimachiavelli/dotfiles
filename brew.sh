@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# tap dupes for make
-brew tap homebrew/dupes
+# Tap improved emacs repo
+brew tap d12frosted/emacs-plus
 
 # Make sure we’re using the latest Homebrew
 brew update
@@ -27,18 +27,29 @@ brew install imagemagick --with-webp
 brew install node
 brew install ffmpeg
 brew install youtube-dl
-brew install tmux
 brew install aspell
 brew install ansible
 brew install composer
 
-# tap  Homebrew games
-brew tap Homebrew/homebrew-games
+# Install native apps
+brew install dropbox
+brew install google-chrome
+brew install firefox
+brew install the-unarchiver
+brew install transmission
+brew install calibre
+brew install virtualbox
+brew install vagrant
+brew install vlc
+brew install onepassword
+brew install qlmarkdown
+brew install qlstephen
+brew install quicklook-json
 
-# games =)
-# brew install dwarf-fortress
-# brew install stone-soup
-# brew install robotfindskitten
+brew install sketch
+brew install zotero
+brew install universal-media-server
 
-# Remove outdated versions from the cellar
+brew install emacs-plus  --with-natural-title-bars
+
 brew cleanup
