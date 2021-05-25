@@ -2,6 +2,7 @@
 
 # Tap improved emacs repo
 brew tap d12frosted/emacs-plus
+brew tap homebrew/homebrew-cask-versions
 
 # Make sure we’re using the latest Homebrew
 brew update
